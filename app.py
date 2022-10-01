@@ -22,8 +22,24 @@ def menu(menutype):
     elif menutype == 'HBP':
         req = requests.get('http://127.0.0.1:5000/api/HBP')
         json_data = json.loads(req.content)
+    elif menutype == 'Cancer':
+        req = requests.get('http://127.0.0.1:5000/api/Cancer')
+        json_data = json.loads(req.content)
+    elif menutype == 'Heart Attack':
+        req = requests.get('http://127.0.0.1:5000/api/Heart Attack')
+        json_data = json.loads(req.content)
+    elif menutype == 'Kidney':
+        req = requests.get('http://127.0.0.1:5000/api/Kidney')
+        json_data = json.loads(req.content)
+    elif menutype == 'Alzheimer':
+        req = requests.get('http://127.0.0.1:5000/api/Alzheimer')
+        json_data = json.loads(req.content)
+    elif menutype == 'Osteoporosis':
+        req = requests.get('http://127.0.0.1:5000/api/Osteoporosis')
+        json_data = json.loads(req.content)
     else:
         json_data = null
+
     return render_template('submit.html', diseasetype = menutype, listdata = json_data)
 
 @app.route('/option')
