@@ -1,12 +1,30 @@
 # Food Recommendation Service for Health-Compromised Persons
 
-from flask import Flask, render_template, redirect, url_for
+from importlib.resources import contents
+from flask import Flask, render_template, request, redirect, url_for
 from dbInterface import *
+import requests, json
+
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def main_page():
+    if request.method == "POST":
+        foodmenu = request.form['medicalhistory']
+        return redirect(url_for('menu', menutype = foodmenu))
     return render_template('index.html')
+
+@app.route('/foodmenu/<menutype>', methods=["GET", "POST"])
+def menu(menutype):
+    if menutype == 'Diabetic':
+        req = requests.get('http://127.0.0.1:5000/api/Diabetic')
+        json_data = json.loads(req.content)
+    elif menutype == 'HBP':
+        req = requests.get('http://127.0.0.1:5000/api/HBP')
+        json_data = json.loads(req.content)
+    else:
+        json_data = null
+    return render_template('submit.html', diseasetype = menutype, listdata = json_data)
 
 @app.route('/option')
 def option():

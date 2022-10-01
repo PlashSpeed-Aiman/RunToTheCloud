@@ -1,4 +1,3 @@
-from distutils.log import debug
 import sqlite3
 from dataclasses import asdict, dataclass
 from recipe_dataclass import Recipe
@@ -20,6 +19,7 @@ def query_db(db_name:str,disease_item:str):
     for row in rows:
         recipe = Recipe()
         recipe.recipe_name = row[1]
+        recipe.disease_type = row[2]
         recipe.ingredients = str(row[3]).split(',')
         newlist.append(asdict(recipe))
     print(newlist)
@@ -27,6 +27,5 @@ def query_db(db_name:str,disease_item:str):
 def main():
     query_db('app_db.db','DIABETIC')
 
-
 if __name__ == "__main__":
-    main(debug=True)
+    main()

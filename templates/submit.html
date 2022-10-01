@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Health Food Recommendation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="..\static\css\submit.css">
+  </head>
+  <body>
+    <div class="header-center">
+        <a href="#default">Health Based Food Recommendation System</a>
+    </div>
+    <div class="login">
+        <h1>Here are your suggested food :</h1>
+        {% for data in listdata %}
+          {% if data['disease_type'] == diseasetype: %}
+        <img src="../static/images/{{data['recipe_name']}}.jpg" alt="">
+        <h5 style="text-align: center;">{{data['recipe_name']}}</h5>
+        <h6>Ingredients:</h6>
+        <ol>
+          {% for i in data['ingredients'] %}
+            <li>{{i}}</li>
+          {% endfor %}
+        </ol>
+          {% endif %}
+        {% endfor %}
+    </div>
+          
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+  </body>
+</html>
