@@ -1,3 +1,4 @@
+from distutils.log import debug
 import sqlite3
 from dataclasses import asdict, dataclass
 from recipe_dataclass import Recipe
@@ -28,4 +29,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(debug=True)

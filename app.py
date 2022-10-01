@@ -1,12 +1,15 @@
 # Food Recommendation Service for Health-Compromised Persons
 
-from flask import Flask
+from flask import Flask, render_template, redirect, url_for
 from dbInterface import *
 app = Flask(__name__)
 
-
 @app.route('/')
 def main_page():
+    return render_template('index.html')
+
+@app.route('/option')
+def option():
     return """
     <!DOCTYPE html>
     <head></head>
@@ -18,11 +21,9 @@ def main_page():
     <html>
     """
 
-
 @app.route('/api/disease list')
 def hello():
     return dict(disease_type=['diabetic', 'hbp'])
-
 
 @app.route('/api/<disease_type>')
 def query_disease_food(disease_type: str):
