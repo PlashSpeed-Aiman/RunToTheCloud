@@ -19,13 +19,13 @@ def query_db(db_name:str,disease_item:str):
     for row in rows:
         recipe = Recipe()
         recipe.recipe_name = row[1]
-        recipe.ingredients = str(row[3]).split(',')
+        recipe.disease_type = row[2]
+        recipe.ingredients = str(row[3]).split(';')
         newlist.append(asdict(recipe))
     print(newlist)
     return newlist
 def main():
     query_db('app_db.db','DIABETIC')
-
 
 if __name__ == "__main__":
     main()
